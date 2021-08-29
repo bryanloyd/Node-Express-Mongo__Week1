@@ -2,7 +2,7 @@ const express = require("express");
 const promotionRouter = express.Router();
 
 promotionRouter
-  .route("/promotions")
+  .route("/")
   .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/plain");
@@ -25,7 +25,7 @@ promotionRouter
   });
 
 promotionRouter
-  .route("/promotions/:promotionId")
+  .route("/:promotionId")
   .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/plain");
@@ -37,17 +37,17 @@ promotionRouter
   .post((req, res) => {
     res.statusCode = 403;
     res.end(
-      `POST operation not support on /promotions ${req.params.promotionId}`
+      `POST operation not supported on /promotions ${req.params.promotionId}`
     );
   })
   .put((req, res) => {
-    res.write(`Updating the promotion: ${req.params.promotionId}\n`);
+    res.write(`Updating the promotions: ${req.params.promotionId}\n`);
     res.end(
-      `Will update the promotion: ${req.body.name} with description: ${req.body.description}`
+      `Will update the promotions: ${req.body.name} with description: ${req.body.description}`
     );
   })
   .delete((req, res) => {
-    res.end(`Deleting all promotion: ${req.params.promotionId}`);
+    res.end(`Deleting all promotions: ${req.params.promotionId}`);
   });
 
 module.exports = promotionRouter;

@@ -2,7 +2,7 @@ const express = require("express");
 const partnerRouter = express.Router();
 
 partnerRouter
-  .route("/partners")
+  .route("/")
   .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/plain");
@@ -25,7 +25,7 @@ partnerRouter
   });
 
 partnerRouter
-  .route("/partners/:partnerId")
+  .route("/:partnerId")
   .all((req, res, next) => {
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/plain");
@@ -36,16 +36,18 @@ partnerRouter
   })
   .post((req, res) => {
     res.statusCode = 403;
-    res.end(`POST operation not support on /campsites/${req.params.partnerId}`);
+    res.end(
+      `POST operation not supported on /partners/${req.params.partnerId}`
+    );
   })
   .put((req, res) => {
-    res.write(`Updating the campsite: ${req.params.partnerId}\n`);
+    res.write(`Updating the partner: ${req.params.partnerId}\n`);
     res.end(
       `Will update the partner: ${req.body.name} with description: ${req.body.description}`
     );
   })
   .delete((req, res) => {
-    res.end(`Deleting all partner: ${req.params.partnerId}`);
+    res.end(`Deleting all partners: ${req.params.partnerId}`);
   });
 
 module.exports = partnerRouter;
